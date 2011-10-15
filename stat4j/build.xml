@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project basedir="." default="compile" name="stat4j">
+
+	<path id="libs">
+		<fileset dir="ext" includes="*.jar" />
+	</path>
+
+	<target name="init">
+		<property name="version" value="1.0" />
+		<property name="base" value="." />
+		<property name="build" value="build" />
+		<property name="report" value="${build}/report" />
+		<property name="dist" value="dist" />
+		<property name="src" value="src" />
+		<property name="etc" value="etc" />
+		<property name="testsrc" value="test" />
+		<property name="examplesrc" value="examples" />
+		<property name="docs" value="docs" />
+		<property name="apidocs" value="${docs}/api" />
+		<property name="jar.filename" value="stat4j-${version}.jar" />
+		<property name="junit.out.dir.xml" value="${report}/junit/xml" />
+		<property name="junit.out.dir.html" value="${report}/junit/html" />
+	</target>
+
+	<target name="clean" depends="init">
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<target name="prepare" depends="init">
+		<mkdir dir="${build}" />
+		<mkdir dir="${build}/classes" />
+		<mkdir dir="${build}/src" />
+
+		<copy todir="${build}/src">
+			<fileset dir="${src}" includes="**/*.java" />
+		</copy>
+
+		<copy todir="${build}/src">
+			<fileset dir="${testsrc}" includes="**/*.java" />
+		</copy>
+		
+		<copy todir="${build}/src">
+			<fileset dir="${testsrc}" includes="**/*.java" />
+		</copy>
+		
+	</target>
+
+	<target name="compile" depends="prepare">
+		<javac destdir="${build}/classes" srcdir="${build}/src" classpathref="libs" />
+	</target>
+
+	<target name="javadoc" depends="prepare">
+		<mkdir dir="${docs}" />
+		<javadoc sourcepath="${build}/src" destdir="${docs}" packagenames="net.sourceforge.stat4j.*" Author="true" Doctitle="stat4j API Documentation" Use="true" Version="true" Windowtitle="stat4j API" Private="true" classpathref="libs">
+			<tag name="todo" description="To do:" />
+		</javadoc>
+	</target>
+
+	<target name="tests" description="Runs the unit tests" depends="compile">
+		<delete dir="${junit.out.dir.xml}" />
+		<mkdir dir="${junit.out.dir.xml}" />
+		<junit printsummary="yes" haltonfailure="no">
+			<classpath refid="${libs}" />
+			<formatter type="xml" />
+			<batchtest fork="yes" todir="${junit.out.dir.xml}">
+				<fileset dir="${testsrc}" includes="**/*Test.java" />
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="junitreport" description="Create a report for the rest result">
+		<mkdir dir="${junit.out.dir.html}" />
+		<junitreport todir="${junit.out.dir.html}">
+			<fileset dir="${junit.out.dir.xml}">
+				<include name="*.xml" />
+			</fileset>
+			<report format="frames" todir="${junit.out.dir.html}" />
+		</junitreport>
+	</target>
+
+	<target name="dist" depends="compile,javadoc">
+		<mkdir dir="${dist}" />			
+		<!-- Jar -->
+		<jar basedir="${build}/classes" jarfile="${dist}/${jar.filename}" />
+	</target>
+
+</project>

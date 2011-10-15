@@ -1,0 +1,12 @@
+.Finish build
+	-test cases - run 
+	-doc - generate api docs
+	-config files in jar
+.Configuration
+	.split config
+.Add forwarding appender support
+.Demo
+	-demo run scripts
+.Test installation works
+.Create User Guide in HTML
+.Create examples
