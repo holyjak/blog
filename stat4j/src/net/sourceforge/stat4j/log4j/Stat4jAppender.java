@@ -50,7 +50,8 @@ public class Stat4jAppender extends AppenderSkeleton {
 		if (logEvent.categoryName.equals(c))
 			return;
 		// direct log to metric capture mechanism
-		MetricCollector.getInstance().applyLog(logEvent.getRenderedMessage());
+        Throwable cause = (logEvent.getThrowableInformation() == null)? null : logEvent.getThrowableInformation().getThrowable();
+		MetricCollector.getInstance().applyLog(logEvent.getRenderedMessage(), cause);
 	}
 
 	public boolean requiresLayout() {

@@ -72,6 +72,11 @@ public class Log {
 		c.warn(message);
 	}
 
+	public static void error(String category,Object message) {
+		Category c = Category.getInstance(category);
+		c.error(message);
+	}
+
 	public static void warn(Object message, Throwable t) {
 		category.warn(message, t);
 	}

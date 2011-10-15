@@ -35,100 +35,115 @@ import net.sourceforge.stat4j.util.Log;
  * @see Threashold
  * 
  * @author Lara D'Abreo
- */
-/**
- * @author Lara D'Abreo
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
- */
-/**
- * @author Lara D'Abreo
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
- */
-/**
- * @author Lara D'Abreo
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
+ * @author Jakub Holy
  */
 public final class Alert {
 
-    protected String name;
-
-    protected String statisticName;
-
-    protected String category;
-
-    protected String description;
-
-    protected Threshold warn;
-
-    protected Threshold critical;
-
-    public Alert() {
-
-    }
+	protected String name;
+	protected String statisticName;
+	protected String category;
+	protected String description;
+	protected Threshold warn;
+	protected Threshold critical;
+    
+    protected long lastAlertedMs;
+    private long quietPeriodMs = 1000 * 60 * 10; // 10 min
+    private boolean lastAlertCritical = false;
 
     public void init(String name, Properties properties) {
-        this.name = name;
+		this.name = name;
 
-        statisticName = properties.getProperty("statistic");
+		statisticName = properties.getProperty("statistic");
 
-        description = properties.getProperty("description");
-        if (description == null) {
-            description = name;
-        }
-        // init category
-        category = (String) properties.get("category");
-        if (category == null) {
-            category = "alerts";
-        }
+		description = properties.getProperty("description");
+		if (description == null) {
+			description = name;
+		}
+		// init category
+		category = (String) properties.get("category");
+		if (category == null) {
+			category = "alerts";
+		}
 
-        // init warn
-        String str = (String) properties.get("warn");
+		// init warn
+		String str = (String) properties.get("warn");
+		if (str != null) {
+			warn = Threshold.toThreshold(str);
+		}
+
+		// init critical
+		str = (String) properties.get("critical");
+		if (str != null) {
+			critical = Threshold.toThreshold(str);
+		}
+
+        str = (String) properties.getProperty("quietperiod");
         if (str != null) {
-            warn = Threshold.toThreshold(str);
+            quietPeriodMs = Long.parseLong(str);
         }
 
-        // init critical
-        str = (String) properties.get("critical");
-        if (str != null) {
-            critical = Threshold.toThreshold(str);
+	}
+
+	public boolean evaluateAlert(double value) {
+        boolean triggered = false;
+		if (isTriggered(critical, value, true)) {
+            triggered = true;
+            lastAlertCritical = true;
+			Log.error(
+				category,
+				"CRITICAL Alert "
+					+ description
+					+ " rule "
+					+ critical
+					+ " value "
+					+ value);
+		} else if (isTriggered(warn, value, false)) {
+            triggered = true;
+            lastAlertCritical = false;
+			Log.error(
+				category,
+				"WARN Alert "
+					+ description
+					+ " rule "
+					+ warn
+					+ " value "
+					+ value);
+		}
+
+        if (triggered) {
+            lastAlertedMs = System.currentTimeMillis();
         }
-    }
 
-    public void evaluateAlert(double value) {
-        if (isTriggered(critical, value)) {
-            Log.warn(category, "CRITICAL Alert " + description + " rule "
-                    + critical + " value " + value);
-        } else if (isTriggered(warn, value)) {
-            Log.warn(category, "WARN Alert " + description + " rule " + warn
-                    + " value " + value);
-        }
+        return triggered;
 
     }
 
-    public boolean isTriggered(Threshold t, double value) {
-        if (t == null)
-            return false;
-        return t.isTriggered(value);
-    }
+	boolean isTriggered(Threshold t, double value, boolean critical) {
+		if (t == null) return false;
 
-    /**
-     * @return
-     */
-    public String getName() {
-        return name;
-    }
+        boolean inQuietPeriod = (System.currentTimeMillis() - lastAlertedMs) <= quietPeriodMs;
+        boolean newCritical = critical && !lastAlertCritical;
+        boolean ignoreEvent = inQuietPeriod && !newCritical;
 
-    /**
-     * @return
-     */
-    public String getStatisticName() {
-        return statisticName;
-    }
+        boolean result = !ignoreEvent && t.isTriggered(value);
+
+        //System.out.println("Alert.isTriggered: quiet=" + inQuietPeriod + ", result=" + result + ", last alert at " + lastAlertedMs);
+
+        return result;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getStatisticName() {
+		return statisticName;
+	}
 
 }

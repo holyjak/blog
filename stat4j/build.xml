@@ -60,10 +60,11 @@
 	</target>
 
 	<target name="tests" description="Runs the unit tests" depends="compile">
+        <fail message="This task isn't really working and I haven't time to fix it" />
 		<delete dir="${junit.out.dir.xml}" />
 		<mkdir dir="${junit.out.dir.xml}" />
 		<junit printsummary="yes" haltonfailure="no">
-			<classpath refid="${libs}" />
+			<classpath refid="libs" />
 			<formatter type="xml" />
 			<batchtest fork="yes" todir="${junit.out.dir.xml}">
 				<fileset dir="${testsrc}" includes="**/*Test.java" />

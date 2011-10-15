@@ -47,7 +47,7 @@ public class Util {
 	}
 
 	public static String getCategory() {
-		return bundle.getString("logcategory");
+		return bundle.containsKey("logcategory") ? bundle.getString("logcategory") : "stat4j";
 	}
 	
 	public static Properties createProperties(String context) {

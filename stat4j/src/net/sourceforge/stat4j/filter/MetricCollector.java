@@ -162,12 +162,14 @@ public class MetricCollector {
 		return instance;
 	}
 
-	public void applyLog(String log) {
+	public void applyLog(String log, Throwable throwable) {
 		// Iterate over filters and see if
 		// a match has occured
+        String throwableInfo = (throwable == null)? "" : throwable.toString() + " <- ";
+        String fullLog = throwableInfo + log;
 		for (int i = 0; i < filters.length; ++i) {
-			if (filters[i].isMatch(log)) {
-				generateMetrics(filters[i], log);
+			if (filters[i].isMatch(fullLog)) {
+				generateMetrics(filters[i], fullLog);
 			}
 		} //rof
 
