@@ -1,7 +1,7 @@
 Example of Automatic Generic Data Mappers
 =========================================
 
-See the description at the blog post [XXXXX]().
+See the description at the blog post [Bad Code: Too Many Object Conversions Between Application Layers And How to Avoid Them](http://theholyjava.wordpress.com/2012/05/12/bad-code-too-many-object-conversions-between-application-layers-and-how-to-avoid-them/).
 
 We are mapping:
 
