@@ -35,10 +35,6 @@ import com.sun.jersey.test.framework.spi.container.TestContainerException;
  * }</code></pre>
  *
  * @see #assertHttpStatus(Status, ClientResponse)
- *
- * @see com.comoyo.test.jersey.AbstractGuiceJerseyTest in paybacktime
- * @see com.comoyo.AbstractJerseyWithMockKodeeDaosTest.jersey.AbstractJerseyTest in paybacktime
- *
  * @see JerseyTest#resource()
  */
 public abstract class AbstractJerseyTest extends JerseyTest {
