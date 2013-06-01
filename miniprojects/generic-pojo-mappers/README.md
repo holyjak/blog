@@ -3,6 +3,8 @@ Example of Automatic Generic Data Mappers
 
 See the description at the blog post [Bad Code: Too Many Object Conversions Between Application Layers And How to Avoid Them](http://theholyjava.wordpress.com/2012/05/12/bad-code-too-many-object-conversions-between-application-layers-and-how-to-avoid-them/).
 
+Go directly to the [directory with the java classes](https://github.com/jakubholynet/blog/tree/master/miniprojects/generic-pojo-mappers/src/main/java/net/jakubholy/blog/genericmappers) involved.
+
 We are mapping:
 
 * XML to Java Bean via JAXB
