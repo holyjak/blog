@@ -35,7 +35,7 @@
              :rules :cljs}]}
 
   :cljsbuild
-  {:builds [{:source-paths ["target/classes/cljs" "target/test-classes"]
+  {:builds [{:source-paths ["target/classes/cljs" #_"target/test-classes"]
              :compiler {:output-to "target/cljs/testable.js"
                         :optimizations :whitespace
                         :pretty-print true}}]
