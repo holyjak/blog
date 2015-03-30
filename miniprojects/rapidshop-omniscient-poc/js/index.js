@@ -41,7 +41,7 @@ function render () {
   // "cursor" is na updatable view into the immutable data structure: 
   React.render(
           <Page data={accessoriesStruct.cursor()}/>,
-    document.body);
+    document.getElementById("app"));
 }
 
 // Re-render on data change; If used in a Store, we'd do this.trigger(data)
