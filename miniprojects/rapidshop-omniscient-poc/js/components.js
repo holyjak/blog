@@ -33,7 +33,6 @@ var Accessory = component("Accessory", [withInitialState], function(props) {
     };
 
     var variations = props.accessory.get("variations");
-    var singleVariation = (variations.count() === 1);
 
     var variationDisplay = variations
             .map((v) => {
@@ -41,19 +40,20 @@ var Accessory = component("Accessory", [withInitialState], function(props) {
                 var ajaxUpdateUrl = "url:..?t=" + this.state.ts;
                 var iframe = ajaxUpdateUrl;
 
-                if (singleVariation) {
+                if (variations.count() === 1) {
                     return <div>Only iframe: {iframe}</div>;
                 }
 
                 return <li key={sku}>
-                    {sku}: {v.has("selected") + ""}
+                    {sku}:
                     &nbsp;
                     [<a
                         href="javascript:void(0)"
                         onClick={selectVariationFn(sku)}>
                         {(self.state.selectedVariationSku === sku)? "x" : "+"}
                     </a>]
-                    &nbsp;{iframe}
+                    &nbsp;
+                    {iframe}
                 </li>;
             });
 
