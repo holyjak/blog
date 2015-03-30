@@ -1,0 +1,19 @@
+{
+  "name": "rapidshop-omniscient-poc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "@holyjak",
+  "license": "mit",
+  "scripts": {
+    "dist": "rm -rf dist; mkdir dist; webpack ---colors -d js dist/app.generated.js && cp index.html.prod dist/index.html",
+    "start": "node server"
+  },
+  "dependencies": {
+    "immstruct": "^1.4.0",
+    "omniscient": "^3.1.0",
+    "jsx-loader": "^0.12.2",
+    "react-hot-loader": "^1.2.4",
+    "webpack": "^1.7.3",
+    "webpack-dev-server": "^1.7.0"
+  }
+}
