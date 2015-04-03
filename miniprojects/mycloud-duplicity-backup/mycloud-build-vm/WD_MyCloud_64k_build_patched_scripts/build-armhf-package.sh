@@ -28,21 +28,8 @@ suite=$3
 build_dir="build"
 binutils_tar="binutils/binutils-armhf-64k.tar.gz"
 
-case "$suite" in
-    "wheezy" )
-	    bootstrap="bootstrap/wheezy-bootstrap_1.24.14_armhf.tar.gz"
-	    ;;
-    "jessie" )
-	    bootstrap="bootstrap/jessie-bootstrap_5.14.14_armhf.tar.gz"
-	    ;;
-	* ) 
-        usage
-        ;;
-esac
-
-./setup.sh $bootstrap $build_dir
-
-if [ "$BUILD_64K" == "true" ]; then
+# JH: Skip if binutils already set up (during a previous package build)
+if [ "$BUILD_64K" == "true" -a ! -d $build_dir/root/binutils ]; then
 	mkdir -p $build_dir/root/binutils
 	tar xvf $binutils_tar -C $build_dir/root/binutils
 
