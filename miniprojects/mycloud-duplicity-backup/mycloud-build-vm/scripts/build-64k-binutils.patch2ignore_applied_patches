@@ -1,0 +1,13 @@
+--- build-64k-binutils.sh	2015-04-03 10:36:52.000000000 +0200
++++ build-64k-binutils.sh.fixed	2015-04-03 10:40:34.000000000 +0200
+@@ -38,8 +38,8 @@
+ binutils_path=`find /root -maxdepth 1 -type d -name "binutils-*"`
+ 
+ cd $binutils_path
+-patch -p1 -i /root/800-mspd-64k-pages.patch
+-patch -p1 -i /root/801-mspd-64k-pages-2.patch
++patch -N -p1 -i /root/800-mspd-64k-pages.patch
++patch -N -p1 -i /root/801-mspd-64k-pages-2.patch
+ 
+ debian/rules binary
+ 
