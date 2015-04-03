@@ -1,6 +1,8 @@
 Backup of WD MyCloud to S3/Glacier with duplicity
 =================================================
 
+*(See my blog post [Backup WD MyCloud to S3/Glacier with duplicity (build instructions included)](https://theholyjava.wordpress.com/2015/04/03/backup-wd-mycloud-to-s3glacier-with-duplicity-build-instructions-included/).)*
+
 How to back up your precious files stored on the WD My Cloud NAS
 into S3 with the slow but low-cost storage class "Glacier".
 
