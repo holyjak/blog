@@ -24,7 +24,7 @@ You will need to:
 
 ## 1. Build duplicity and its dependencies
 
-See `./mycloud-build-vm/README.txt`
+See `./mycloud-build-vm/README.md`
 This is based on duplicity 0.6.24 (available in the Jessie release of Debian);
 the older one in Wheezy does not support the crucial option `--file-prefix-archive`.
 
