@@ -11,7 +11,7 @@ soon after upload. (It takes hours to restore something from Glacier but
 its cost is orders of magnitude lower than that of S3 itself). We leave
 metadata files in S3 so that duplicity can read them.
 
-90% of this is based on http://www.x2q.net/blog/2013/02/24/howto-backup-wd-mybook-live-to-amazon-s3-and-glacier/ and the WD build guide (http://community.wd.com/t5/WD-My-Cloud/GUIDE-Building-packages-for-the-new-firmware-someone-tried-it/m-p/770653#M18650 and the update at http://community.wd.com/t5/WD-My-Cloud/GUIDE-Building-packages-for-the-new-firmware-someone-tried-it/m-p/841385#M27799). Kudos to the authors!
+90% of this is based on http://www.x2q.net/2013/02/24/howto-backup-wd-mybook-live-to-amazon-s3-and-glacier/ and the WD build guide (http://community.wd.com/t5/WD-My-Cloud/GUIDE-Building-packages-for-the-new-firmware-someone-tried-it/m-p/770653#M18650 and the update at http://community.wd.com/t5/WD-My-Cloud/GUIDE-Building-packages-for-the-new-firmware-someone-tried-it/m-p/841385#M27799). Kudos to the authors!
 
 You will need to:
 
