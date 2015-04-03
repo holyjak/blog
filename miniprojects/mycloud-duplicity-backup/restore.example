@@ -1,0 +1,4 @@
+## Try to restore a selected file:
+# !!! Set the AWS ID and SECRET env variables prior to running this
+# --tempdir necessary because /tmp too small, --no-encryption because I did not use any during backup
+duplicity --tempdir=/DataVolume/Temp --no-encryption --file-to-restore francie.bmp restore s3://s3-eu-west-1.amazonaws.com/my-backup-bucket /DataVolume/Temp/france.bmp
