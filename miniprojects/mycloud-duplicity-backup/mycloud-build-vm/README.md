@@ -19,7 +19,7 @@ Usage
  1. Run `vagrant up`
  2. Run `vagrant ssh` to enter the VM
  3. Setup the build environment: run `sudo /vagrant/install.sh` in the VM; check for errors
- 4. Build the packages: run `sudo /vagrant/build-duplicity.sh`
+ 4. Build the packages: run `sudo nohup /vagrant/build-duplicity.sh &` (it will take lot of time and we don't want to lose the build process when ssh disconnects; watch via `sudo tail -f nohup.out`)
  5. Copy the built wheezy and jessie packages to MyCloud; important: *exclude -dev* packages
 
 Note: Building takes a long time.
