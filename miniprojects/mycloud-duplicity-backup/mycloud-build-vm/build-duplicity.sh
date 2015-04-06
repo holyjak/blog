@@ -16,5 +16,6 @@ done
 cp /wdmc-build/64k-jessie/build/root/*.deb /wdmc-build/64k-wheezy/build/root/*.deb /vagrant/
 
 echo "!!! All the .deb files are now in /vagrant/ (i.e. the directory with the Vagrantfile)"
-echo "Tip: You likely do not actually need to install the Python 3 packages; skip them if they cause any problems."
+echo "Tip1: Do not install the -dev packages; you don't need them and they are likely to cause problems."
+echo "Tip2: You likely do not actually need to install the Python 3 packages; skip them if they cause any problems."
 echo "ENJOY"
