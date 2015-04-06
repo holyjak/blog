@@ -11,3 +11,10 @@ done
 for PKG in duplicity ; do
   ./scripts/build-package-jessie.sh $PKG
 done
+
+# 3. Done
+cp /wdmc-build/64k-jessie/build/root/*.deb /wdmc-build/64k-wheezy/build/root/*.deb /vagrant/
+
+echo "!!! All the .deb files are now in /vagrant/ (i.e. the directory with the Vagrantfile)"
+echo "Tip: You likely do not actually need to install the Python 3 packages; skip them if they cause any problems."
+echo "ENJOY"
