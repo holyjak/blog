@@ -14,7 +14,7 @@
         <jersey.version>1.11</jersey.version> <!-- First to use Jackson 1.9[.2], required by mongo-jackson-mapper -->
         <mongo-jackson-mapper.version>1.3</mongo-jackson-mapper.version> <!-- Req. Jackson 1.9.2, same as Jersey -->
         <mongo-java-driver.version>2.7.2</mongo-java-driver.version> <!-- Compatible w/ mongo-jackson-mapper 1.3-1.4.1 -->
-        <jetty.version>8.0.0.M2</jetty.version>
+        <jetty.version>9.4.41.v20210516</jetty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <compileSource>1.6</compileSource>
         <compileTarget>1.6</compileTarget>
